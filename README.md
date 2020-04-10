@@ -1,9 +1,19 @@
 # covid19ImpactEstimator-api
 A simple API which estimates impact of COVID19 disease based on input data.
 
-Feel free to try the [covid19ImpactEstimatorAPI](url comin soon.) after finishing going through the README.
+Feel free to try the [covid19ImpactEstimatorAPI](https://covid19impactestimator.herokuapp.com/api/v1/on-covid-19/) after finishing going through the README.
 
-The input data is a json object of the format:
+The API supports POST requests only.
+   it has 3 endpoints:
+      1: https://covid19impactestimator.herokuapp.com/api/v1/on-covid-19/xml
+      2: https://covid19impactestimator.herokuapp.com/api/v1/on-covid-19/json
+      3: https://covid19impactestimator.herokuapp.com/api/v1/on-covid-19/
+      
+The first endpoint response is in xml format.
+The second endpoint response is json in format.
+The third endpoint is a wildcard to catch all POST requests which dont match /xml or /json and its response is json and exactly same with the second endpoint response.
+
+The POST body in all three endpoints is a json object of the format:
 ```javascript
 {
    "region":{
@@ -102,3 +112,6 @@ and the xml response looks like this:
 where the data object is jusst the input posted to the api,
 the impact object is an object containing best case scenario
 and severeImpact object contains worst case scenario of COVID19 based on the data in the data object.
+
+The hosted interactive openapi3 documentation is coming soon.
+Thanks Geeksilver.
