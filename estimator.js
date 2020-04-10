@@ -2,6 +2,10 @@ const xml = require('xml2js');
 
 const xmlBuilder = new xml.Builder();
 
+const fs = require('fs');
+
+const path = require('path');
+
 // money lost due to workers being sick
 const moneyLost = (infectedByRequestedTime, data) => {
   const income = data.region.avgDailyIncomeInUSD;
@@ -83,17 +87,33 @@ const controller = (req, res) => {
       res.set('Content-Type', 'text/xml');
       return res.status(201).send(xmlBuilder.buildObject(data));
     }
-
     return res.status(201).json(data);
   }
   if (req.params.type === 'xml') {
     res.set('Content-Type', 'text/xml');
     return res.status(500).send(xmlBuilder.buildObject('invalid input'));
   }
-
   return res.status(500).json('invalid input');
+};
+
+// logger
+const logger = (req, res) => {
+  const readStream = fs.createReadStream(path.join(__dirname, 'logs.txt'));
+  readStream.on('error', (error) => {
+    return res.status(500).json(error);
+  });
+  readStream.on('open', () => {
+    res.status(200);
+    return readStream.pipe(res);
+  });
+};
+
+const wildGet = (req, res) => {
+  return res.status(200).json('your GET request did not match any path');
 };
 
 module.exports = {
   controller,
+  logger,
+  wildGet,
 };
