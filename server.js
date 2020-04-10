@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // routes
 app.post('/api/v1/on-covid-19/:type', ctrl.controller);
 // wild post requests
-app.post('/api/v1/on-covid-19/*', ctrl.controller);
+app.post('/api/v1/on-covid-19', ctrl.controller);
 
 // start serrver
 http.createServer(app).listen(app.get('port'));
