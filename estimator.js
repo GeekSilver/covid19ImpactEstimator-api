@@ -105,13 +105,13 @@ const controller = (req, res) => {
   if (req.body !== undefined || null) {
     data = covid19ImpactEstimator(req.body);
     if (req.params.type === 'xml') {
-      res.set('Content-Type', 'text/xml');
+      res.type('application/xml');
       return res.status(201).send(xmlBuilder.buildObject(data));
     }
     return res.status(201).json(data);
   }
   if (req.params.type === 'xml') {
-    res.set('Content-Type', 'text/xml');
+    res.type('application/xml');
     return res.status(500).send(xmlBuilder.buildObject('invalid input'));
   }
   return res.status(500).json('invalid input');
