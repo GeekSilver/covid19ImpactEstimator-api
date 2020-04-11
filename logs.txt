@@ -22,3 +22,6 @@ POST   /api/v1/on-covid-19/xml    201   67.959 ms
 POST   /api/v1/on-covid-19/json    201   0.167 ms
 POST   /api/v1/on-covid-19/json    201   2.819 ms
 POST   /api/v1/on-covid-19/xml    201   4.358 ms
+POST   /api/v1/on-covid-19/xml    201   6.269 ms
+POST   /api/v1/on-covid-19/xml    201   6.577 ms
+POST   /api/v1/on-covid-19/xml    201   6.561 ms
