@@ -105,14 +105,12 @@ const controller = (req, res) => {
   if (req.body !== undefined || null) {
     data = covid19ImpactEstimator(req.body);
     if (req.params.type === 'xml') {
-      res.type('application/xml');
-      return res.status(201).send(xmlBuilder.buildObject(data));
+      return res.header('Content-Type', 'text/xml').status(201).send(xmlBuilder.buildObject(data));
     }
     return res.status(201).json(data);
   }
   if (req.params.type === 'xml') {
-    res.type('application/xml');
-    return res.status(500).send(xmlBuilder.buildObject('invalid input'));
+    return res.header('Content-Type', 'text/xml').status(500).send(xmlBuilder.buildObject('invalid input'));
   }
   return res.status(500).json('invalid input');
 };
@@ -120,18 +118,14 @@ const controller = (req, res) => {
 // logger
 const logger = (req, res) => {
   const readStream = fs.createReadStream(path.join(__dirname, 'logs.txt'));
-  readStream.on('error', (error) => {
-    return res.status(500).json(error);
-  });
+  readStream.on('error', (error) => res.status(500).json(error));
   readStream.on('open', () => {
     res.status(200);
     return readStream.pipe(res);
   });
 };
 
-const wildGet = (req, res) => {
-  return res.status(200).json('your GET request did not match any path');
-};
+const wildGet = (req, res) => res.status(200).json('your GET request did not match any path');
 
 module.exports = {
   controller,
