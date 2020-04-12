@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // set up logger
-app.use(morgan(':method    :url    :status    :total-time[0]  ms', { stream: writeStream }));
+app.use(morgan(':method    :url    :status    0:total-time[0]  ms', { stream: writeStream }));
 
 // routes
 app.post('/api/v1/on-covid-19/:type', ctrl.controller);
