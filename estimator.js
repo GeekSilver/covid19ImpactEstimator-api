@@ -122,7 +122,7 @@ const logger = (req, res) => {
   const readStream = fs.createReadStream(path.join(__dirname, 'logs.txt'));
   readStream.on('error', (error) => res.status(500).json(error));
   readStream.on('open', () => {
-    res.status(200);
+    res.status(200).setHeader('Content-Type', 'text/html');
     return readStream.pipe(res);
   });
 };
