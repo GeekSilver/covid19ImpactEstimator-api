@@ -19,7 +19,7 @@ const ctrl = require('./estimator');
 // setting CORS
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Access, Authorization');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Access, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'POST');
   next();
 });
